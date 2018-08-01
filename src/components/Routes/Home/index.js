@@ -21,7 +21,7 @@ class Home extends React.Component {
         <h1>Restaurants & Menu</h1>
         <h2>Active Order</h2>
         <Segment>
-          <Order />
+          <Order order={this.props.activeOrder} />
           <Button color="teal" onClick={this.handlePlaceOrder}>
             <Icon name="cart plus" /> Place Order
           </Button>

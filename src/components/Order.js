@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styled from 'react-emotion';
 import isEmpty from 'lodash.isempty';
 import formatMoney from 'accounting-js/lib/formatMoney.js';
@@ -12,11 +11,11 @@ const FooterRow = styled(Table.Row)`
 class Order extends React.Component {
   state = {};
   render() {
-    const { activeOrder } = this.props;
+    const { order } = this.props;
     const rows = [];
     let total = 0;
-    if (!isEmpty(activeOrder)) {
-      for (const [name, { price, quantity }] of Object.entries(activeOrder)) {
+    if (!isEmpty(order)) {
+      for (const [name, { price, quantity }] of Object.entries(order)) {
         total += price * quantity;
         rows.push(
           <Table.Row>
@@ -53,4 +52,4 @@ class Order extends React.Component {
   }
 }
 
-export default connect(({ activeOrder }) => ({ activeOrder }))(Order);
+export default Order;

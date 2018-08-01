@@ -58,7 +58,7 @@ const activeOrder = (state = {}, { type, payload }) => {
   }
 };
 
-const orderId = (state = 0, action) => {
+const orderId = (state = 1, action) => {
   switch (action.type) {
     case PLACE_ORDER:
       return state + 1;
