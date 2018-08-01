@@ -6,6 +6,7 @@
     "accounting-js": "^1.1.1",
     "axios": "^0.18.0",
     "emotion": "^9.2.6",
+    "lodash.isempty": "^4.4.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
