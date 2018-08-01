@@ -4,6 +4,7 @@ import {
   RESTAURANTS_REJECTED,
   RESTAURANTS_REQUESTED,
   RESTAURANTS_RESOLVED,
+  ADD_ITEM,
 } from './actions';
 
 const restaurants = (state = null, action) => {
@@ -39,5 +40,25 @@ const networkError = (state = false, action) => {
   }
 };
 
-const rootReducer = combineReducers({ restaurants, loading, networkError });
+const activeOrder = (state = {}, { type, payload }) => {
+  switch (type) {
+    case ADD_ITEM:
+      return {
+        ...state,
+        [payload.name]: {
+          price: payload.price,
+          quantity: state[payload.name] ? state[payload.name].quantity + 1 : 1,
+        },
+      };
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  restaurants,
+  loading,
+  networkError,
+  activeOrder,
+});
 export default rootReducer;

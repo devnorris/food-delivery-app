@@ -4,6 +4,8 @@ import styled from 'react-emotion';
 import formatMoney from 'accounting-js/lib/formatMoney.js';
 import { Accordion, Dimmer, List, Loader } from 'semantic-ui-react';
 
+import { addItem } from '../../../redux/actions';
+
 const FlexContainer = styled('div')`
   display: flex;
   flex-direction: column;
@@ -26,7 +28,7 @@ class Menus extends React.Component {
   };
 
   render() {
-    const { loading, restaurants } = this.props;
+    const { loading, restaurants, addItem } = this.props;
     const { activeIndex } = this.state;
 
     return (
@@ -54,6 +56,7 @@ class Menus extends React.Component {
                         icon="add circle"
                         header={menuItem.name}
                         content={formatMoney(menuItem.price)}
+                        onClick={() => addItem(menuItem.name, menuItem.price)}
                       />
                     ))}
                   </StyledList>
@@ -66,8 +69,11 @@ class Menus extends React.Component {
   }
 }
 
-export default connect(({ loading, networkError, restaurants }) => ({
-  loading,
-  networkError,
-  restaurants,
-}))(Menus);
+export default connect(
+  ({ loading, networkError, restaurants }) => ({
+    loading,
+    networkError,
+    restaurants,
+  }),
+  { addItem }
+)(Menus);
