@@ -18,7 +18,7 @@ class Order extends React.Component {
       for (const [name, { price, quantity }] of Object.entries(order)) {
         total += price * quantity;
         rows.push(
-          <Table.Row>
+          <Table.Row key={name}>
             <Table.Cell>{quantity}</Table.Cell>
             <Table.Cell>{name}</Table.Cell>
             <Table.Cell>{formatMoney(price * quantity)}</Table.Cell>
@@ -31,7 +31,7 @@ class Order extends React.Component {
     }
 
     return (
-      <Table unstackable selectable>
+      <Table unstackable selectable fixed>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>QTY</Table.HeaderCell>
@@ -40,13 +40,15 @@ class Order extends React.Component {
             <Table.HeaderCell />
           </Table.Row>
         </Table.Header>
-        <Table.Body>{rows}</Table.Body>
-        <FooterRow>
-          <Table.Cell>Total:</Table.Cell>
-          <Table.Cell />
-          <Table.Cell>{formatMoney(total)}</Table.Cell>
-          <Table.Cell />
-        </FooterRow>
+        <Table.Body>
+          {rows}
+          <FooterRow>
+            <Table.Cell>Total:</Table.Cell>
+            <Table.Cell />
+            <Table.Cell>{formatMoney(total)}</Table.Cell>
+            <Table.Cell />
+          </FooterRow>
+        </Table.Body>
       </Table>
     );
   }
