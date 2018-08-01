@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'react-emotion';
 import isEmpty from 'lodash.isempty';
 import { Button, Icon, Container, Segment } from 'semantic-ui-react';
 
 import { placeOrder } from '../../../redux/actions';
 import Order from '../../Order';
 import Menus from './Menus';
+
+const StyledContainer = styled(Container)`
+  margin-top: 15px;
+  margin-bottom: 15px;
+`;
 
 class Home extends React.Component {
   handlePlaceOrder = () => {
@@ -17,7 +23,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Container textAlign="center">
+      <StyledContainer textAlign="center">
         <h1>Restaurants & Menu</h1>
         <h2>Active Order</h2>
         <Segment>
@@ -28,7 +34,7 @@ class Home extends React.Component {
         </Segment>
         <h2>Menu</h2>
         <Menus />
-      </Container>
+      </StyledContainer>
     );
   }
 }

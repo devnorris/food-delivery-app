@@ -7,6 +7,11 @@ import { Button, Container, Icon, List, Segment } from 'semantic-ui-react';
 import { deleteOrder } from '../../../redux/actions';
 import Order from '../../Order';
 
+const StyledContainer = styled(Container)`
+  margin-top: 15px;
+  margin-bottom: 15px;
+`;
+
 const ListItem = styled(List.Item)`
   margin-bottom: 15px;
 `;
@@ -30,12 +35,12 @@ const Orders = ({ orders, deleteOrder }) => {
   }
 
   return (
-    <Container textAlign="center">
+    <StyledContainer textAlign="center">
       <h1>My Orders</h1>
       <Segment>
         <List as="ol">{orderList}</List>
       </Segment>
-    </Container>
+    </StyledContainer>
   );
 };
 
