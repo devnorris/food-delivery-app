@@ -8,10 +8,16 @@ const FooterRow = styled(Table.Row)`
   font-weight: bold;
 `;
 
+const ClickableIcon = styled(Icon)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 class Order extends React.Component {
   state = {};
   render() {
-    const { order } = this.props;
+    const { order, orderId, removeItem } = this.props;
     const rows = [];
     let total = 0;
     if (!isEmpty(order)) {
@@ -23,7 +29,12 @@ class Order extends React.Component {
             <Table.Cell>{name}</Table.Cell>
             <Table.Cell>{formatMoney(price * quantity)}</Table.Cell>
             <Table.Cell textAlign="center">
-              <Icon name="remove circle" size="large" color="red" />
+              <ClickableIcon
+                name="remove circle"
+                size="large"
+                color="red"
+                onClick={() => removeItem(name, orderId)}
+              />
             </Table.Cell>
           </Table.Row>
         );

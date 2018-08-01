@@ -7,6 +7,7 @@ import {
   ADD_ITEM,
   PLACE_ORDER,
   DELETE_ORDER,
+  REMOVE_ITEM,
 } from './actions';
 
 const restaurants = (state = null, action) => {
@@ -52,6 +53,13 @@ const activeOrder = (state = {}, { type, payload }) => {
           quantity: state[payload.name] ? state[payload.name].quantity + 1 : 1,
         },
       };
+    case REMOVE_ITEM:
+      // order 0 refers to active order
+      if (payload.orderId === 0) {
+        const { [payload.name]: value, ...withoutItem } = state;
+        return withoutItem;
+      }
+      return state;
     case PLACE_ORDER:
       return {};
     default:
@@ -79,6 +87,18 @@ const orders = (state = {}, { type, payload }) => {
       const { [payload]: value, ...withoutOrder } = state;
       return withoutOrder;
     }
+    case REMOVE_ITEM:
+      if (payload.orderId !== 0) {
+        const { [payload.orderId]: order, ...rest } = state;
+        const { [payload.name]: value, ...withoutItem } = order;
+        return {
+          ...rest,
+          [payload.orderId]: {
+            ...withoutItem,
+          },
+        };
+      }
+      return state;
     default:
       return state;
   }

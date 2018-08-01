@@ -13,6 +13,20 @@ export const addItem = (name, price) => ({
   payload: { name, price },
 });
 
+// REMOVE ITEM FROM ORDER
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+
+// orderId 0 refers to active order
+export const removeItem = (name, orderId) => {
+  return {
+    type: REMOVE_ITEM,
+    payload: {
+      name,
+      orderId,
+    },
+  };
+};
+
 // PLACE ORDER
 export const PLACE_ORDER = 'PLACE_ORDER';
 
@@ -25,7 +39,6 @@ export const placeOrder = (id, order) => ({
 });
 
 // DELETE ORDER
-
 export const DELETE_ORDER = 'DELETE_ORDER';
 
 export const deleteOrder = id => ({

@@ -4,7 +4,7 @@ import styled from 'react-emotion';
 import isEmpty from 'lodash.isempty';
 import { Button, Icon, Container, Segment } from 'semantic-ui-react';
 
-import { placeOrder } from '../../../redux/actions';
+import { placeOrder, removeItem } from '../../../redux/actions';
 import Order from '../../Order';
 import Menus from './Menus';
 
@@ -22,12 +22,13 @@ class Home extends React.Component {
   };
 
   render() {
+    const { activeOrder, removeItem } = this.props;
     return (
       <StyledContainer textAlign="center">
         <h1>Restaurants & Menu</h1>
         <h2>Active Order</h2>
         <Segment>
-          <Order order={this.props.activeOrder} />
+          <Order order={activeOrder} orderId={0} removeItem={removeItem} />
           <Button color="teal" onClick={this.handlePlaceOrder}>
             <Icon name="cart plus" /> Place Order
           </Button>
@@ -44,5 +45,5 @@ export default connect(
     activeOrder,
     orderId,
   }),
-  { placeOrder }
+  { placeOrder, removeItem }
 )(Home);
