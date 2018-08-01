@@ -12,3 +12,15 @@ export const addItem = (name, price) => ({
   type: ADD_ITEM,
   payload: { name, price },
 });
+
+// PLACE ORDER
+
+export const PLACE_ORDER = 'PLACE_ORDER';
+
+export const placeOrder = (id, order) => ({
+  type: PLACE_ORDER,
+  payload: {
+    id,
+    order,
+  },
+});

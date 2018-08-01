@@ -5,6 +5,7 @@ import {
   RESTAURANTS_REQUESTED,
   RESTAURANTS_RESOLVED,
   ADD_ITEM,
+  PLACE_ORDER,
 } from './actions';
 
 const restaurants = (state = null, action) => {
@@ -50,6 +51,29 @@ const activeOrder = (state = {}, { type, payload }) => {
           quantity: state[payload.name] ? state[payload.name].quantity + 1 : 1,
         },
       };
+    case PLACE_ORDER:
+      return {};
+    default:
+      return state;
+  }
+};
+
+const orderId = (state = 0, action) => {
+  switch (action.type) {
+    case PLACE_ORDER:
+      return state + 1;
+    default:
+      return state;
+  }
+};
+
+const orders = (state = {}, { type, payload }) => {
+  switch (type) {
+    case PLACE_ORDER:
+      return {
+        ...state,
+        [payload.id]: payload.order,
+      };
     default:
       return state;
   }
@@ -60,5 +84,7 @@ const rootReducer = combineReducers({
   loading,
   networkError,
   activeOrder,
+  orderId,
+  orders,
 });
 export default rootReducer;
