@@ -1,9 +1,10 @@
 import React from 'react';
+import { Container } from 'semantic-ui-react';
 
 const Orders = () => (
-  <main>
-    <h1>Orders</h1>
-  </main>
+  <Container textAlign="center">
+    <h1>My Orders</h1>
+  </Container>
 );
 
 export default Orders;
