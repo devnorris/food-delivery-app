@@ -2,15 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash.isempty';
 import styled from 'react-emotion';
-import { Container, List, Segment } from 'semantic-ui-react';
+import { Button, Container, Icon, List, Segment } from 'semantic-ui-react';
 
+import { deleteOrder } from '../../../redux/actions';
 import Order from '../../Order';
 
 const ListItem = styled(List.Item)`
   margin-bottom: 15px;
 `;
 
-const Orders = ({ orders }) => {
+const Orders = ({ orders, deleteOrder }) => {
   let orderList = 'No orders placed.';
 
   if (!isEmpty(orders)) {
@@ -20,6 +21,9 @@ const Orders = ({ orders }) => {
         <ListItem key={id}>
           <List.Header>{id}</List.Header>
           <Order order={order} />
+          <Button color="red" onClick={() => deleteOrder(id)}>
+            <Icon name="remove circle" />Delete order
+          </Button>
         </ListItem>
       );
     }
@@ -35,4 +39,7 @@ const Orders = ({ orders }) => {
   );
 };
 
-export default connect(({ orders }) => ({ orders }))(Orders);
+export default connect(
+  ({ orders }) => ({ orders }),
+  { deleteOrder }
+)(Orders);

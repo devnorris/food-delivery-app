@@ -14,7 +14,6 @@ export const addItem = (name, price) => ({
 });
 
 // PLACE ORDER
-
 export const PLACE_ORDER = 'PLACE_ORDER';
 
 export const placeOrder = (id, order) => ({
@@ -23,4 +22,13 @@ export const placeOrder = (id, order) => ({
     id,
     order,
   },
+});
+
+// DELETE ORDER
+
+export const DELETE_ORDER = 'DELETE_ORDER';
+
+export const deleteOrder = id => ({
+  type: DELETE_ORDER,
+  payload: id,
 });

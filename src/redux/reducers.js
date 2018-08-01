@@ -6,6 +6,7 @@ import {
   RESTAURANTS_RESOLVED,
   ADD_ITEM,
   PLACE_ORDER,
+  DELETE_ORDER,
 } from './actions';
 
 const restaurants = (state = null, action) => {
@@ -74,6 +75,10 @@ const orders = (state = {}, { type, payload }) => {
         ...state,
         [payload.id]: payload.order,
       };
+    case DELETE_ORDER: {
+      const { [payload]: value, ...withoutOrder } = state;
+      return withoutOrder;
+    }
     default:
       return state;
   }
